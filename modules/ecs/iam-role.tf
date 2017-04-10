@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_instance" {
-  name = "${var.awsResourcePrefix}-ecsInstance-role"
+  name = "${var.aws_resource_prefix}-ecsInstance-role"
   path = "/"
 
   assume_role_policy = <<EOF
@@ -64,7 +64,7 @@ data "aws_iam_policy_document" "ecs_policy" {
 }
 
 resource "aws_iam_policy" "ecs" {
-  name   = "${var.awsResourcePrefix}-ecsInstance-policy"
+  name   = "${var.aws_resource_prefix}-ecsInstance-policy"
   path   = "/"
   policy = "${data.aws_iam_policy_document.ecs_policy.json}"
 }
@@ -83,7 +83,7 @@ resource "aws_iam_role_policy_attachment" "ecs_role_policy_attach" {
 # the list that's displayed is actually a list of instance profile names. 
 # The console does not create an instance profile for a role that is not associated with Amazon EC2.
 resource "aws_iam_instance_profile" "ecs" {
-  name  = "${var.awsResourcePrefix}-ecsInstanceRole"
+  name  = "${var.aws_resource_prefix}-ecsInstanceRole"
   path  = "/"
   roles = ["${aws_iam_role.ecs_instance.name}"]
 }

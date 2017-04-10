@@ -1,9 +1,17 @@
-module "ecs" {
-  source            = "./modules/ecs"
-  awsResourcePrefix = "devops-starter"
-  ecs_cluster_name = "sethu-test1"
-  asg_desired_size = "1"
-  asg_max_size = "1"
-  ecs_subnets = "subnet-3221d244,subnet-93b04dca,subnet-e83de98c"
-  key_name = "sethu-ecs"
+variable "aws_region" {
+  default = "ap-southeast-2"
+}
+
+provider "aws" {
+  region = "${var.aws_region}"
+}
+
+module "stack" {
+  source = "./modules/stack"
+  region = "${var.aws_region}"
+  aws_resource_prefix = "devops-starter"
+  cluster_name = "sethu-test1"
+  ssh_key_name = "sethu-ecs"
+  subnets = "${var.subnets}"
+  vpc_id = "${var.vpc_id}"
 }

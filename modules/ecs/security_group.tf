@@ -1,5 +1,5 @@
 resource "aws_security_group" "ecs_alb_communication_sg_group" {
-  name        = "${var.awsResourcePrefix}-ecs_alb_communication_sg_group"
+  name        = "${var.aws_resource_prefix}-ecs_alb_communication_sg_group"
   description = "Allow all inbound traffic on ephemeral port range - 32768 - 61000"
 
   ingress {
@@ -23,7 +23,7 @@ resource "aws_security_group" "ecs_alb_communication_sg_group" {
 }
 
 resource "aws_security_group" "ecs_ssh_access" {
-  name        = "${var.awsResourcePrefix}-ecs_ssh_access"
+  name        = "${var.aws_resource_prefix}-ecs_ssh_access"
   description = "Allow all inbound traffic on port 22"
 
   ingress {

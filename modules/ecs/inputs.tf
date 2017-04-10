@@ -1,5 +1,5 @@
 # Mandatory variables that need to be provided
-variable "awsResourcePrefix" {
+variable "aws_resource_prefix" {
   type = "string"
 }
 
@@ -36,10 +36,4 @@ variable "ecs_instance_type" {
   type = "string"
 
   default = "t2.micro"
-}
-
-variable "ebs_optimised" {
-  type = "string"
-
-  default = "false"
 }

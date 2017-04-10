@@ -7,7 +7,7 @@ data "template_file" "ecs_instance_user_data" {
 }
 
 resource "aws_launch_configuration" "ecs" {
-  name_prefix          = "${var.awsResourcePrefix}-ecs-"
+  name_prefix          = "${var.aws_resource_prefix}-ecs-"
   security_groups      = [
     "${aws_security_group.ecs_alb_communication_sg_group.id}",
     "${aws_security_group.ecs_ssh_access.id}"
@@ -15,7 +15,7 @@ resource "aws_launch_configuration" "ecs" {
   image_id             = "${var.ecs_container_instance_ami}"
   iam_instance_profile = "${aws_iam_instance_profile.ecs.name}"
   instance_type        = "${var.ecs_instance_type}"
-  ebs_optimized        = "${var.ebs_optimised}"
+  ebs_optimized        = "${var.ecs_instance_type == "t2.micro" ? false : true}"
   key_name             = "${var.key_name}"
 
   user_data = "${data.template_file.ecs_instance_user_data.rendered}"

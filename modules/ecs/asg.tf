@@ -1,5 +1,5 @@
 resource "aws_autoscaling_group" "ecs" {
-  name                      = "${var.awsResourcePrefix}-${var.ecs_cluster_name}-asg"
+  name                      = "${var.aws_resource_prefix}-${var.ecs_cluster_name}-asg"
   vpc_zone_identifier       = ["${split(",", var.ecs_subnets)}"]
   launch_configuration      = "${aws_launch_configuration.ecs.name}"
   health_check_grace_period = 300
@@ -14,7 +14,7 @@ resource "aws_autoscaling_group" "ecs" {
 }
 
 resource "aws_autoscaling_policy" "ecs_scaleup" {
-  name                   = "${var.awsResourcePrefix}-${var.ecs_cluster_name}-scaleup"
+  name                   = "${var.aws_resource_prefix}-${var.ecs_cluster_name}-scaleup"
   scaling_adjustment     = 1
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 300
@@ -22,7 +22,7 @@ resource "aws_autoscaling_policy" "ecs_scaleup" {
 }
 
 resource "aws_autoscaling_policy" "ecs_scaledown" {
-  name                   = "${var.awsResourcePrefix}-${var.ecs_cluster_name}-scaledown"
+  name                   = "${var.aws_resource_prefix}-${var.ecs_cluster_name}-scaledown"
   scaling_adjustment     = -1
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 60
@@ -30,7 +30,7 @@ resource "aws_autoscaling_policy" "ecs_scaledown" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "ecs_scaleup" {
-  alarm_name          = "${var.awsResourcePrefix}-${var.ecs_cluster_name}-scaleup"
+  alarm_name          = "${var.aws_resource_prefix}-${var.ecs_cluster_name}-scaleup"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "2"
   metric_name         = "MemoryUtilization"
@@ -48,7 +48,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_scaleup" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "ecs_scaledown" {
-  alarm_name          = "${var.awsResourcePrefix}-${var.ecs_cluster_name}-scaledown"
+  alarm_name          = "${var.aws_resource_prefix}-${var.ecs_cluster_name}-scaledown"
   comparison_operator = "LessThanOrEqualToThreshold"
   evaluation_periods  = "10"
   metric_name         = "MemoryUtilization"
