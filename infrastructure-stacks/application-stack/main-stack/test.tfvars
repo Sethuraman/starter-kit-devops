@@ -1,0 +1,7 @@
+aws_resource_prefix = "test"
+aws_region = "ap-southeast-2"
+cluster_name = "sethu1"
+ssh_key_name = "sethu-ecs"
+root_path_app_name = "ui"
+vpc_id = "vpc-36c3ca53"
+subnets = "subnet-3221d244,subnet-93b04dca,subnet-e83de98c"

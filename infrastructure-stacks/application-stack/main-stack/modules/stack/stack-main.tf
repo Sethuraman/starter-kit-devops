@@ -12,8 +12,7 @@ module "alb" {
   s3_logs_bucket_id = "${module.s3.infra_log_bucket_id}"
   region = "${var.region}"
   subnets = "${var.subnets}"
-  api_target_group_name = "api"
-  ui_target_group_name = "ui"
+  default_target_group_name = "${var.root_path_app_name}"
   vpc_id = "${var.vpc_id}"
 }
 

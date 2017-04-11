@@ -24,17 +24,14 @@ variable "subnets" {
   description = "specify all subnets with a comma separator and no spaces in between"
 }
 
-variable "api_target_group_name" {
-  type = "string"
-}
-
-variable "ui_target_group_name" {
+variable "default_target_group_name" {
   type = "string"
 }
 
 variable "vpc_id" {
   type = "string"
 }
+
 
 # Defaults that don't have to be provided
 variable "alb_account_ids" {
@@ -57,7 +54,3 @@ variable "alb_account_ids" {
   }
 }
 
-variable "api_path_pattern" {
-  type = "string"
-  default = "/api/*"
-}

@@ -24,3 +24,7 @@ variable subnets {
 variable vpc_id {
   type = "string"
 }
+
+variable root_path_app_name {
+  type = "string"
+}

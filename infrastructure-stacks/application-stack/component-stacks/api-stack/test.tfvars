@@ -1,0 +1,11 @@
+application_main_stack_state_file="../../main-stack/test.tfstate"
+aws_region = "ap-southeast-2"
+aws_resource_prefix = "test"
+name = "api"
+number_of_containers = 1
+container_port = 8000
+image = "779624523000.dkr.ecr.ap-southeast-2.amazonaws.com/starter-kit/api:1.7"
+logs_stream_prefix = "server.log"
+deployment_minimum_healthy_percent = "100"
+deployment_maximum_healthy_percent = "200"
+health_check_endpoint = "/api/health"
